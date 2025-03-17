@@ -5,8 +5,10 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex justify-between items-center mb-6">
                         <h2 class="text-2xl font-semibold text-gray-800">Products</h2>
-                        <a href="{{ route('products.create') }}"
-                            class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Add New Product</a>
+                        @auth
+                            <a href="{{ route('products.create') }}"
+                                class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Add New Product</a>
+                        @endauth
                     </div>
 
                     @if (session('success'))
@@ -35,6 +37,12 @@
                                     <div class="mt-4 text-sm text-gray-500">
                                         ID: {{ $product->id }}
                                     </div>
+                                    @auth
+                                        <div class="mt-4">
+                                            <a href="{{ route('products.edit', $product->id) }}"
+                                                class="px-4 py-2 bg-yellow-400 text-gray-800 rounded-md hover:bg-yellow-500">Edit</a>
+                                        </div>
+                                    @endauth
 
 
                                 </div>
